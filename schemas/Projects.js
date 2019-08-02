@@ -1,3 +1,5 @@
+//Creating a scheme for projects, each projects will have his own array of posts
+
 const mongoose = require('mongoose');
 
 var projectsSchema = mongoose.Schema({

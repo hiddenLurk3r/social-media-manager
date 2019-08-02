@@ -1,3 +1,5 @@
+//Creating a Scheme for User, see a reference to Projects Scheme
+
 const mongoose = require('mongoose');
 
 var userSchema = mongoose.Schema({
