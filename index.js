@@ -9,7 +9,7 @@ const app = express();
 
 
 //Creating connection to Mongo Atlas database
-mongoose.connect('mongodb+srv://skozak:zY5LzWh3zbQHuBKB@mediamanager-nooer.mongodb.net/test?retryWrites=true&w=majority', {useNewUrlParser: true})
+mongoose.connect('mongodb+srv://skozak:<password>@mediamanager-nooer.mongodb.net/test?retryWrites=true&w=majority', {useNewUrlParser: true})
 .catch(err => {
     console.log("Error" + err);
 });
