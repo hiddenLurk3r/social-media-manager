@@ -7,10 +7,16 @@ const session = require('express-session');
 //Creating new Express app
 const app = express();
 
+// DB Config
+const dbkey = require("./config/keys").MongoURI;
+
 //Creating connection to Mongo Atlas database
-mongoose.connect('mongodb+srv://skozak:<password>@mediamanager-nooer.mongodb.net/test?retryWrites=true&w=majority', {useNewUrlParser: true})
+mongoose.connect(dbkey, {useNewUrlParser: true})
+.then(() => {
+    console.log("MongoDB connected");
+})
 .catch(err => {
-    console.log("Error" + err);
+    console.log("Error: " + err);
 });
 
 const db = mongoose.connection;
