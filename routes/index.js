@@ -1,9 +1,14 @@
 const express = require('express');
 const router = express.Router();
 
-//GET request to render views/login
+// GET request to render views/login
 router.get("/", (req, res) => {
-    res.send("Home");
+    res.render("welcome");
+});
+
+// GET request to render views/dashboard
+router.get("/dashboard", (req, res) => {
+    res.render("dashboard");
 });
 
 // Redirect to users/login
