@@ -16,8 +16,8 @@
     "nodemon": "^1.19.1"
   },
   "scripts": {
-    "start": "node index.js",
-    "test": "nodemon index.js"
+    "start": "node app.js",
+    "test": "nodemon app.js"
   },
   "repository": {
     "type": "git",
