@@ -28,6 +28,7 @@ app.use(express.urlencoded({ extended: true }));
 
 //To the get command we will then pass our EJS template
 app.use("/", require('./routes/index'));
+app.use("/users", require('./routes/users'));
 
 //This command should be at the end of the file, in localhost it will run probably on port 5000
 const port = process.env.port || 5000;
