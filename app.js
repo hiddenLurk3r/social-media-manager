@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const expressLayouts = require('express-ejs-layouts');
 const passport = require('passport');
+const flash = require('connect-flash');
 const session = require('express-session');
 
 //Creating new Express app
@@ -31,6 +32,23 @@ app.set('view engine', 'ejs');
 
 //Express body parser
 app.use(express.urlencoded({ extended: true }));
+
+// Express Session Middleware
+app.use(session({
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: true
+  }));
+
+  // Connect flash
+  app.use(flash());
+
+  // Global Vars
+  app.use((req, res, next) => {
+      res.locals.success_msg = req.flash('success_msg');
+      res.locals.error_msg = req.flash('error_msg');
+      next();
+  });
 
 //To the get command we will then pass our EJS template
 app.use("/", require('./routes/index'));

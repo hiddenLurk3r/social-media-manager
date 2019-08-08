@@ -18,21 +18,6 @@ router.get("/register", (req, res) => {
 });
 
 //POST request from Register form
-router.post("/register", (req, res) => {
-    const {email, password1, password2} = req.body;
-
-
-
-})
-
-
-// Login Page
-router.get('/login', forwardAuthenticated, (req, res) => res.render('login'));
-
-// Register Page
-router.get('/register', forwardAuthenticated, (req, res) => res.render('register'));
-
-// Register
 router.post('/register', (req, res) => {
   const { name, email, password, password2 } = req.body;
   let errors = [];
@@ -46,7 +31,7 @@ router.post('/register', (req, res) => {
   }
 
   if (password.length < 6) {
-    errors.push({ msg: 'Password must be at least 6 characters' });
+    errors.push({ msg: 'Password must be at least 6 characters long' });
   }
 
   if (errors.length > 0) {
@@ -54,19 +39,18 @@ router.post('/register', (req, res) => {
       errors,
       name,
       email,
-      password,
-      password2
+      password
     });
   } else {
-    User.findOne({ email: email }).then(user => {
+    User.findOne({ email: email })
+    .then(user => {
       if (user) {
         errors.push({ msg: 'Email already exists' });
         res.render('register', {
           errors,
           name,
           email,
-          password,
-          password2
+          password
         });
       } else {
         const newUser = new User({
@@ -82,10 +66,7 @@ router.post('/register', (req, res) => {
             newUser
               .save()
               .then(user => {
-                req.flash(
-                  'success_msg',
-                  'You are now registered and can log in'
-                );
+                req.flash('success_msg', 'You are now registered and can log in');
                 res.redirect('/users/login');
               })
               .catch(err => console.log(err));
