@@ -2,39 +2,17 @@
 
 const mongoose = require('mongoose');
 
-var projectsSchema = new mongoose.Schema({
+var projectSchema = new mongoose.Schema({
     project_name: {
         type: String,
         required: true
       },
-    posts: [{
-        author: {
-            type: String,
-            required: true
-          },
-        publish_date: {
-            type: Date,
-            default: Date.now
-          },
-        textContent: {
-          type: String,
-          required: true
-        },
-        socialSite: {
-          type: String,
-          required: true
-        },
-        isApproved: {
-          type: String,
-          default: false
-        },
-        linkToPicture: {
-          type: String,
-          required: false
-        }
+      posts: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Post'
     }]
 });
 
-const Projects = mongoose.model('Projects', projectsSchema);
+const Project = mongoose.model('Project', projectSchema);
 
-module.exports = Projects;
+module.exports = Project;

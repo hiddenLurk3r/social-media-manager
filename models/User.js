@@ -21,7 +21,7 @@ var userSchema = new mongoose.Schema({
       },
     users_projects: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Projects'
+        ref: 'Project'
     }]
 });
 
