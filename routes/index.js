@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const { ensureAuthenticated } = require('../config/auth');
 
 // GET request to render views/login
 router.get("/", (req, res) => {
@@ -7,8 +8,10 @@ router.get("/", (req, res) => {
 });
 
 // GET request to render views/dashboard
-router.get("/dashboard", (req, res) => {
-    res.render("dashboard");
+router.get("/dashboard", ensureAuthenticated, (req, res) => {
+    res.render("dashboard", {
+        name: req.user.name
+    });
 });
 
 // Redirect to users/login

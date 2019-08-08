@@ -29,6 +29,7 @@ module.exports = function(passport) {
     })
   );
 
+// After login: Session is established and maintained via a cookie set in user's browser.
   passport.serializeUser(function(user, done) {
     done(null, user.id);
   });

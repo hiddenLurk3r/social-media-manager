@@ -26,12 +26,12 @@ router.post('/register', (req, res) => {
     errors.push({ msg: 'Please enter all fields' });
   }
 
-  if (password != password2) {
-    errors.push({ msg: 'Passwords do not match' });
-  }
-
   if (password.length < 6) {
     errors.push({ msg: 'Password must be at least 6 characters long' });
+  }
+
+  if (password != password2) {
+    errors.push({ msg: 'Passwords do not match' });
   }
 
   if (errors.length > 0) {
@@ -45,7 +45,7 @@ router.post('/register', (req, res) => {
     User.findOne({ email: email })
     .then(user => {
       if (user) {
-        errors.push({ msg: 'Email already exists' });
+        errors.push({ msg: 'Email is already registered' });
         res.render('register', {
           errors,
           name,
@@ -68,6 +68,7 @@ router.post('/register', (req, res) => {
               .then(user => {
                 req.flash('success_msg', 'You are now registered and can log in');
                 res.redirect('/users/login');
+                console.log(`New user registered: ${user.email}, _id:${user._id}`);
               })
               .catch(err => console.log(err));
           });
@@ -77,12 +78,12 @@ router.post('/register', (req, res) => {
   }
 });
 
-// Login
+// Login - POST
 router.post('/login', (req, res, next) => {
   passport.authenticate('local', {
     successRedirect: '/dashboard',
     failureRedirect: '/users/login',
-    failureFlash: true
+    failureFlash: true,
   })(req, res, next);
 });
 
