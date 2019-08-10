@@ -61,6 +61,8 @@ app.use(passport.session());
 //To the get command we will then pass our EJS template
 app.use("/", require('./routes/index'));
 app.use("/users", require('./routes/users'));
+app.use("/projects", require('./routes/projects'));
+app.use("/projects/posts", require('./routes/posts'));
 
 //This command should be at the end of the file, in localhost it will run probably on port 5000
 const port = process.env.port || 5000;

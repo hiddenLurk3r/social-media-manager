@@ -5,7 +5,6 @@ const passport = require('passport');
 
 // Load User model
 const User = require('../models/User');
-const { forwardAuthenticated } = require('../config/auth');
 
 //GET request to render views/login
 router.get("/login", (req, res) => {
@@ -91,7 +90,7 @@ router.post('/login', (req, res, next) => {
 router.get('/logout', (req, res) => {
   req.logout();
   req.flash('success_msg', 'You are logged out');
-  res.redirect('/users/login');
+  res.redirect('/login');
 });
 
 
