@@ -49,7 +49,7 @@ router.post('/add', (req, res) => {
                 console.log(err);
             });
             req.flash('success_msg', 'New Project Saved');
-            res.redirect('/projects');
+            res.redirect('/dashboard');
             console.log(`New project saved: ${project.project_name}, project_id:${project._id}, user: ${req.user.name}`);
         })
         .catch(err =>{
