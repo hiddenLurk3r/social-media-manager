@@ -58,11 +58,16 @@ app.use(passport.session());
       next();
   });
 
-//To the get command we will then pass our EJS template
+// Routing
 app.use("/", require('./routes/index'));
 app.use("/users", require('./routes/users'));
 app.use("/projects", require('./routes/projects'));
 app.use("/projects/posts", require('./routes/posts'));
+
+// 404 Error handler
+app.use((req, res, next) => {
+    res.status(404).render('404');
+});
 
 //This command should be at the end of the file, in localhost it will run probably on port 5000
 const port = process.env.port || 5000;
